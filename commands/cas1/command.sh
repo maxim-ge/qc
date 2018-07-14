@@ -2,6 +2,7 @@ invoke ssh sudo 1 docker network create -d overlay --opt encrypted userver || ec
 invoke ssh sudo 1 docker volume create cassandra1-vol || echo "Volume already created"
 invoke ssh sudo 1 docker volume create cassandra2-vol || echo "Volume already created"
 invoke ssh sudo 1 docker volume create cassandra3-vol || echo "Volume already created"
+
 invoke docker service-set 1 "$service" "\
 	--constraint=node.hostname==$node1of3 \
 	--network cluster \
