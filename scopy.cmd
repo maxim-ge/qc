@@ -1,0 +1,1 @@
+scp -i .cluster\cluster_key %1 cluster@192.168.99.10:%2

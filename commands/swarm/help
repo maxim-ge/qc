@@ -1,0 +1,3 @@
+Install docker in swarm mode using node1 as a master
+
+Usage: cluster swarm <node>

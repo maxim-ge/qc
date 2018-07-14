@@ -1,0 +1,1 @@
+invoke ssh sudo 1 "docker service scale mon_caddy=0"

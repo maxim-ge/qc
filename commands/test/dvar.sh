@@ -1,0 +1,2 @@
+VAR=12
+dvar VAR

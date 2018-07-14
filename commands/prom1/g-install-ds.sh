@@ -1,0 +1,1 @@
+invoke prom1 gapi POST /api/datasources "" $COMMAND_HOME/datasources/ds.json

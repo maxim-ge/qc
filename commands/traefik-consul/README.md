@@ -1,0 +1,1 @@
+traefik in normal mode to work with consul

@@ -1,0 +1,3 @@
+Execute ssh command for cluster_user using .cluster\cluster_key
+
+Usage: cluster ssh <node-number> <command>

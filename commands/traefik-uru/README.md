@@ -1,0 +1,1 @@
+Standalone traefik for cluster0.untill.ru

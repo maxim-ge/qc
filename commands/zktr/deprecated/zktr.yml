@@ -1,0 +1,75 @@
+version: "3.3"
+
+networks:
+  net:
+    driver: overlay
+    attachable: true
+services:
+  zk1:
+    image: zookeeper:3.4.11
+    networks:
+      - net
+    environment:
+      DOCKER_GWBRIDGE_IP: 172.18.0.1
+      ZOO_MY_ID: 1
+      ZOO_SERVERS: server.1=0.0.0.0:2888:3888 server.2=c_zk2:2888:3888 server.3=c_zk3:2888:3888
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname==node1of3
+  zk2:
+    image: zookeeper:3.4.11
+    networks:
+      - net
+    environment:
+      DOCKER_GWBRIDGE_IP: 172.18.0.1
+      ZOO_MY_ID: 2
+      ZOO_SERVERS: server.1=c_zk1:2888:3888 server.2=0.0.0.0:2888:3888 server.3=c_zk3:2888:3888
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname==node2of3
+  zk3:
+    image: zookeeper:3.4.11
+    networks:
+      - net
+    environment:
+      DOCKER_GWBRIDGE_IP: 172.18.0.1
+      ZOO_MY_ID: 3
+      ZOO_SERVERS: server.1=c_zk1:2888:3888 server.2=c_zk2:2888:3888 server.3=0.0.0.0:2888:3888
+    deploy:
+      mode: replicated
+      replicas: 1
+      placement:
+        constraints:
+          - node.hostname==node3of3
+  init:
+    image: traefik:1.5
+    command:
+      - "storeconfig"
+      - "--web"
+      - "--entrypoints=Name:http Address::80 Redirect.EntryPoint:https"
+      - "--entrypoints=Name:https Address::443 TLS"
+      - "--defaultentrypoints=http,https"
+      - "--acme"
+      - "--acme.storage=traefik/acme/account"
+      - "--acme.entryPoint=https"
+      - "--acme.OnHostRule=true"
+      - "--acme.onDemand=false"
+      - "--acme.email=contact@jmaitrehenry.ca"
+      - "--docker"
+      - "--docker.swarmmode"
+      - "--docker.domain=jmaitrehenry.ca"
+      - "--docker.watch"
+      - "--zookeeper"
+      - "--zookeeper.endpoint=zk1:2181"
+      - "--zookeeper.prefix=traefik"
+    networks:
+      - net
+    deploy:
+      restart_policy:
+        condition: on-failure

@@ -1,0 +1,22 @@
+defaultEntryPoints = ["http"]
+
+debug=true
+logLevel = "DEBUG"
+
+[web]
+address = ":8080"
+
+[entryPoints]
+  [entryPoints.http]
+  address = ":80"
+  [entryPoints.http2]
+  address = ":82"
+
+
+[docker]
+endpoint = "unix:///var/run/docker.sock"
+domain = "tr"
+watch = true
+swarmmode = true
+exposedbydefault = false
+

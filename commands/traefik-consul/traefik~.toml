@@ -1,0 +1,26 @@
+debug=true
+logLevel = "DEBUG"
+
+[traefikLog]
+filePath = "tl.txt"
+
+[accessLog]
+filePath = "al.txt"
+
+defaultEntryPoints = ["http"]
+[entryPoints]
+  [entryPoints.http]
+  address = ":88"
+
+[file]
+
+[frontends]
+  [frontends.frontend1]
+  backend = "backend1"
+  [frontends.frontend1.routes.backend1]
+  rule = "Host:myhost:8080"
+
+[backends]
+  [backends.backend1]
+    [backends.backend1.servers.server1]
+    url = "http://127.0.0.1:8080"

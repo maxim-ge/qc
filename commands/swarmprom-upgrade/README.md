@@ -1,0 +1,1 @@
+Replaces caddy with traefik

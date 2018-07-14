@@ -1,0 +1,1 @@
+invoke ssh sudo 1 "docker service update mon_grafana --label-add traefik.port=3000"

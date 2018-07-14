@@ -1,0 +1,1 @@
+ssh -i .cluster\cluster_key cluster@192.168.99.10 %*
