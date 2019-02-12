@@ -10,10 +10,10 @@ SCRIPT
 Vagrant.configure("2") do |config|
 
 #  config.vm.box = "ubuntu/trusty64"
-  config.vm.box = "bento/ubuntu-16.04"
+  config.vm.box = "bento/ubuntu-18.10"
 
   (1..3).each do |i|
-    nname = "node#{i}of3"
+    nname = "node#{i}"
     config.vm.define "#{nname}" do |node|                       
       config.vm.provision "shell", inline: $script1          
       node.vm.hostname = "#{nname}" #host name
