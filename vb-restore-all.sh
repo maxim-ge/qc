@@ -1,4 +1,4 @@
-[ -z $1 ] &&  (echo "Use $0 <shapshot>"; exit 1)
+[ -z $1 ] &&  { echo "Use $0 <shapshot>"; exit 1;}
 
 set -e
 set -x
