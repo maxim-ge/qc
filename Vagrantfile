@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 $script1 = <<SCRIPT
-sudo sed -i 's/prohibit-password/yes/g' /etc/ssh/sshd_config
+sudo sed -i 's/#PermitRootLogin.*/PermitRootLogin yes/' /etc/ssh/sshd_config
 sudo echo 'root:pas' | sudo chpasswd
 sudo service ssh restart
 SCRIPT

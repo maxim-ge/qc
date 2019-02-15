@@ -80,7 +80,7 @@ Docker
 - cluster ssh 1 sudo docker node ls
 
 Misc 
-
+- Allow SSH root login on Ubuntu 18.04 https://linuxconfig.org/allow-ssh-root-login-on-ubuntu-18-04-bionic-beaver-linux
 - date "+%Y-%m-%d %H:%M:%S" -d "1 hour"
 - encrypt: openssl enc -aes-256-cbc -k PASS < Clusterfile  > Clusterfile.enc
 - decrypt: openssl enc -d -aes-256-cbc -k PASS < Clusterfile.enc > Clusterfile.new
